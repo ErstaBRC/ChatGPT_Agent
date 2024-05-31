@@ -99,10 +99,10 @@ export default class ConversationService implements IConversationService {
       return updatedConversation;
     }
 
-    const actionFollowups = ["让悟空跟着你", "你向他告别", ""]
+    const actionFollowups = ["Let Wukong follow you", "You say goodbye to him", ""]
     const promptMsgs: GptMessage[] = [...this.mapToGptMessages(conversation), {
       role: "user",
-      content: `悟空说： "${replyText}". ${actionFollowups[action.value - 1]}. (Respond with just what your character would say)`,
+      content: `Wukong says: "${replyText}". ${actionFollowups[action.value - 1]}. (Respond with just what your character would say)`,
     }];
     const response = await postChatGpt(promptMsgs);
 
@@ -151,7 +151,7 @@ export default class ConversationService implements IConversationService {
   private async summarizeConversation(conversation: IConversationModel, endMessage: string): Promise<string> {
     const promptMsgs: GptMessage[] = [...this.mapToGptMessages(conversation), {
       role: "user",
-      content: `${endMessage}. Write a brief summary of what was just said between you and 悟空, in the 3rd person perspective. Keep it short, but detailed!`,
+      content: `${endMessage}. Write a brief summary of what was just said between you and Wukong, in the 3rd person perspective. Keep it short, but detailed!`,
     }];
 
     // dont include the initial conversation prompt in summary?
@@ -163,10 +163,10 @@ export default class ConversationService implements IConversationService {
   private async validateReply(replyText: string, conversation: IConversationModel): Promise<ChatNumberResponse> {
     const promptMsgs: GptMessage[] = [...this.mapToGptMessages(conversation), {
       role: "user",
-      content: `悟空 replies "${replyText}". Does his response make sense. On this scale of 1 to 5, 
+      content: `Wukong replies "${replyText}". Does his response make sense. On this scale of 1 to 5, 
                 1: Response is non-sensical,
                 2: Response is immersion breaking or meta and acknowledging this is a game,
-                3. Reponse is bad, unnecessarily vulgar for no reason based on the past conversation
+                3. Response is bad, unnecessarily vulgar for no reason based on the past conversation
                 4: Response is all right, and something someone might say but unlikely,
                 5: Response is good and mostly in context of the game world,
         how would you rate the response, give a one sentence reason why`,
@@ -181,10 +181,10 @@ export default class ConversationService implements IConversationService {
   private async getNextAction(replyText: string, conversation: IConversationModel): Promise<ChatNumberResponse> {
     const promptMsgs: GptMessage[] = [...this.mapToGptMessages(conversation), {
       role: "user",
-      content: `悟空 replies "${replyText}". What would you like to do?
-                1: 让悟空跟着你,
-                2: 你向他告别,
-                3: 继续当前对话,
+      content: `Wukong replies "${replyText}". What would you like to do?
+                1: Let Wukong follow you,
+                2: You say goodbye to him,
+                3: Continue the current conversation,
         Pick an action from the list above. respond with just the number for the action`,
     }];
     const response = await postChatGpt(promptMsgs);
@@ -209,18 +209,13 @@ export default class ConversationService implements IConversationService {
     const history = npc.conversation.history;
     let storySoFar = "";
     for (var i = 0; i < history.length; i++) {
-      storySoFar += `${this.getTimeStringDelta(history, i)} ${history[i].msg}`;
+      storySoFar += `${this.getTimeStringDelta(history,  i)} ${history[i].msg}`;
     }
-
-    // let history = npc.conversation.history
-    //   .map((v, i) => `Conversation ${i + 1} summary: ${v.msg}`)
-    //   .join(" ");
 
     const personalContent = ` Your name is ${npc.name}, ${npc.age} years old, you have the personality of a ${npc.starSign}. 
       You have ${npc.money} fictional dollars. ${npc.personalHistory} ${npc.personalKnowledge} 
       ${storySoFar}
       `;
-    // You've had ${npc.conversation.history.length} conversations with Brendan recently. ${history}
 
     const previousSteps = this.lastStepsRecorded(history);
     let timeMsg = "";
@@ -229,9 +224,8 @@ export default class ConversationService implements IConversationService {
       timeMsg = this.stepDeltaToTimeMsg(gc.playerStepsTaken - previousSteps);
       if (gc.playerStepsTaken - previousSteps < 100) walksUp = false;
     }
-    // ${walksUp ? "Brendan walks up to you" : ""}
 
-    const prompt = ` ${timeMsg} at ${envDescription}, What would ${npc.name} say to 悟空? (Keep the response short and just the words your character says)`
+    const prompt = ` ${timeMsg} at ${envDescription}, What would ${npc.name} say to Wukong? (Keep the response short and just the words your character says)`
     const fullPrompt = generalContent + personalContent + prompt;
     console.log(fullPrompt);
     return [{
@@ -282,14 +276,6 @@ export default class ConversationService implements IConversationService {
     if (delta <= 1500) return " A few days later ";
     if (delta <= 3000) return " Many days later ";
     if (delta <= 10000) return " Weeks later ";
-    // if (delta <= 3) return " Then ";
-    // if (delta <= 10) return " A few moments later ";
-    // if (delta <= 30) return " Later that day ";
-    // if (delta <= 60) return " The next day ";
-    // if (delta <= 90) return " A couple days later ";
-    // if (delta <= 150) return " A few days later ";
-    // if (delta <= 300) return " Many days later ";
-    // if (delta <= 1000) return " Weeks later ";
     return " Months later ";
   }
 

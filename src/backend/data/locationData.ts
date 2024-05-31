@@ -14,11 +14,11 @@ const locationData: { [key: string]: ILocation } = {
     entrance: new Vec2(21, 32),
     outside: new Vec2(21, 35),
   },
-  "Henry and Carolines house": {
+  "Henry and Caroline's house": {
     entrance: new Vec2(32, 36),
     outside: new Vec2(32, 39),
   },
-  "Doctors office": {
+  "Doctor's office": {
     entrance: new Vec2(15, 43),
     outside: new Vec2(15, 46),
   },
@@ -44,54 +44,53 @@ export interface ILocationContextInfo {
 // starts with time, Then, a few moments later {timeMsg} at {locationDescription}
 export const locationContext: { [key: number]: ILocationContextInfo } = {
   222: {
-    description: `位于主岛的西北边缘。西面是汪洋大海，东面则是高原的悬崖。周围有几棵树和一片怪物出没的长草地。往南则是长安城的方向。`,
+    description: `Located at the northwestern edge of the main island. To the west is the vast ocean, and to the east are the cliffs of the plateau. There are a few trees and a patch of tall grass where monsters roam. To the south is the direction of Chang'an City.`,
     mapId: 222,
   },
   254: {
-    description: `位于主岛的东北边缘。东面是海洋，西面是高原的悬崖。附近有几棵树和常有妖怪出没的长草地。长安城就在南边。`,
+    description: `Located at the northeastern edge of the main island. To the east is the ocean, and to the west are the cliffs of the plateau. Nearby are a few trees and a patch of tall grass where monsters often appear. Chang'an City is just to the south.`,
     mapId: 254,
   },
   188: {
-    description: `是高原上的森林区。森林里树木茂密，有几片怪物常出没的长草地。长安城就在南边。`,
+    description: `A forest area on the plateau. The forest is dense with trees, and there are a few patches of tall grass where monsters often appear. Chang'an City is just to the south.`,
     mapId: 188,
   },
   190: {
-    description: `位于高原的一片森林中。你正站在一个维护得相当好的小木屋前。四周是茂密的树木和怪物常出没的草地。长安城就在南边。`,
+    description: `Located in a forest on the plateau. You are standing in front of a well-maintained cabin. The surroundings are dense with trees and grassy areas where monsters often appear. Chang'an City is just to the south.`,
     mapId: 190,
   },
   220: {
-    description: `长安城，主岛上的城镇。`,
+    description: `Chang'an City, the town on the main island.`,
     mapId: 220,
   },
   253: {
-    description: `连接主岛和东边小岛的桥梁。桥是木制的，非常狭窄，遇到对面来的人几乎无法并肩而过。`,
+    description: `The bridge connecting the main island to the small island to the east. The bridge is wooden and very narrow, making it difficult to pass side by side with someone coming from the opposite direction.`,
     mapId: 253,
   },
   221: {
-    description: `位于主岛东部的小岛。岛上有一个属于布兰登的住所。这里花团锦簇，维护得很好，并通过一座木桥与主岛相连。`,
+    description: `Located on a small island to the east of the main island. The island houses Brendan's residence. It is full of flowers and well-maintained, connected to the main island by a wooden bridge.`,
     mapId: 221,
   },
   191: {
-    description: `怪物农场的一个围栏区域。这里有一片长草、几棵小树和灌木丛。要离开这里，你必须经过农场的侧门和主入口。`,
+    description: `A fenced area of the monster ranch. There is a patch of tall grass, a few small trees, and bushes. To leave this area, you must pass through the side gate and the main entrance of the ranch.`,
     mapId: 191,
   },
   219: {
-    description: `长安城，就在医师的办公室前面。`,
+    description: `Chang'an City, right in front of the doctor's office.`,
     mapId: 219,
   },
   189: {
-    description: `长安城，就在商店的前方。`,
+    description: `Chang'an City, right in front of the store.`,
     mapId: 189,
   },
   252: {
-    description: `长安城，就在亨利和卡洛琳的房子前面。`,
+    description: `Chang'an City, right in front of Henry and Caroline's house.`,
     mapId: 252,
   },
   251: {
-    description: `长安城，正对着农场的主入口。`,
+    description: `Chang'an City, directly facing the main entrance of the ranch.`,
     mapId: 251,
   },
 };
-
 
 export default locationData;
